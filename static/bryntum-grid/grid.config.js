@@ -1,7 +1,39 @@
 import {AjaxStore, Grid, StringHelper} from './grid.module.js';
 
 const store = new AjaxStore({
-
+  createUrl: "/player_info/",
+  readUrl: "/player_info/",
+  updateUrl: "/player_info/",
+  deleteUrl: "/player_info/",
+  autoLoad: true,
+  autoCommit: true,
+  useRestfulMethods: true,
+  httpMethods: {
+    read: "GET",
+    create: "POST",
+    update: "PATCH",
+    delete: "DELETE",
+  },
+  listeners: {
+    beforeRequest: (event) => {
+      if (event.action === "create") {
+        const newItem = event.body.data[0];
+        delete newItem.id;
+        event.body = newItem;
+      }
+      if (event.action === "update") {
+        const updatedItem = event.body.data[0];
+        const itemId = updatedItem.id;
+        delete updatedItem.id;
+        event.body = updatedItem;
+        store.updateUrl = `/player_info/${itemId}/`;
+      }
+      if (event.action === "delete") {
+        const itemIds = event.body.ids;
+        store.deleteUrl = `/player_info/${itemIds[0]}/`;
+      }
+    },
+  },
 });
 
 let newPlayerCount = 0;
