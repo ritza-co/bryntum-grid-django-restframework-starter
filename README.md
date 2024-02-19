@@ -21,3 +21,18 @@ Install Django and Django REST framework:
 ```sh
 pip install django djangorestframework
 ```
+
+Copy the following files and folders from the `/build` folder in the Bryntum Grid distribution folder and paste them in the `playerinfo/static/bryntum-grid` folder:
+
+- `fonts`
+- `locales` 
+- `grid.module.js` 
+- `grid.module.js.map`
+- `grid.stockholm.css` 
+- `grid.stockholm.css.map` 
+
+Preview the app at [http://localhost:8000](http://localhost:8000) by running the following command:
+
+```sh
+python manage.py runserver localhost:8000
+```
