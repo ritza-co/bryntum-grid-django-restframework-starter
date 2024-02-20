@@ -4,12 +4,12 @@ from .models import Player
 
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.CharField(required=False)
+    id = serializers.IntegerField(required=False)
     name = serializers.CharField(required=True)
     city = serializers.CharField(required=False)
     team = serializers.CharField(required=False)
-    score = serializers.CharField(required=False)
-    percentage_wins = serializers.CharField(required=False)
+    score = serializers.IntegerField(required=False)
+    percentage_wins = serializers.IntegerField(required=False)
 
     class Meta:
         model = Player

@@ -38,7 +38,6 @@ class PlayerViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         try:
             ids_to_delete = request.data.get('ids', [])  # Get list of identifiers from request data
-            print(ids_to_delete)
             instances_to_delete = self.queryset.filter(pk__in=ids_to_delete)
             instances_to_delete.delete()
             return Response({'success': True}, status=status.HTTP_200_OK)
