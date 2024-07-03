@@ -14,13 +14,3 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Player
         fields = ('id', 'name', 'city', 'team', 'score', 'percentage_wins')
-
-    def update(self, instance, validated_data):
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-
-        if 'name' not in validated_data:
-            validated_data['name'] = instance.name
-
-        instance.save()
-        return instance
